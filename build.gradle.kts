@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     `java-library`
+    `maven-publish`
 }
 
 repositories {
@@ -27,3 +28,15 @@ dependencies {
     // Use JUnit test framework
     testImplementation("junit:junit:4.12")
 }
+
+publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "pl.tomaszmichalak.example.azurepipelines"
+                artifactId = "module-a"
+                version = "0.0.1-SNAPSHOT"
+
+                from(components["java"])
+            }
+        }
+    }
